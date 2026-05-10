@@ -30,6 +30,8 @@ class ProfileController extends Controller
 
         if( $auth_provider == 'facebook' ){
 
+
+            // 使用者有按過讚的粉絲專業 data
             $FB_users_like_data = ( new FBLoginDataRepository )->PersonalProfile() ?? [];
             
         }
@@ -54,6 +56,8 @@ class ProfileController extends Controller
 
         $client = new Client();
 
+
+        // google drive 憑證生成的 json 檔案
         $client->setAuthConfig(
             storage_path('app/google/service-account.json')
         );
@@ -73,11 +77,7 @@ class ProfileController extends Controller
             'parents' => [$folderId]
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Upload
-        |--------------------------------------------------------------------------
-        */
+
 
         $file = $drive->files->create(
             $metadata,
